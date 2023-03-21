@@ -846,7 +846,7 @@ def set_cpu_affinity(n: int, process_ids: list, actual: bool = not Conf.TESTING)
         )
         actual = False
     # get the available processors
-    cpu_list = list(range(psutil.cpu_count()))
+    cpu_list = list(psutil.Process().cpu_affinity())
     # affinities of 0 or gte cpu_count, equals to no affinity
     if not n or n >= len(cpu_list):
         return
